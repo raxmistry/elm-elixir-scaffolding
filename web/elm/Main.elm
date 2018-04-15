@@ -8,6 +8,7 @@ import Bootstrap.CDN as CDN
 import Bootstrap.Grid as Grid
 import Bootstrap.Button as Button
 import Navigation exposing (program, Location)
+import Debug exposing (log)
 
 
 init : Location -> ( Model, Cmd Msg )
@@ -24,22 +25,25 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    case model.page of
-        Home ->
-            div []
-                [ text "Hello world"
+    let
+        _ =
+            Debug.log "Just checking" model
+    in
+        case model.page of
+            Home ->
+                div []
+                    [ text "Hello world there"
+                    , div []
+                        [ Button.linkButton
+                            [ Button.primary, Button.attrs [] ]
+                            [ text "Module" ]
+                        ]
+                    ]
 
-                --        , div []
-                --            [ Button.linkButton
-                --                [ Button.primary, Button.attrs [] ]
-                --                [ text "Module" ]
-                --            ]
-                ]
-
-        Clients ->
-            div []
-                [ text "This is the clients page"
-                ]
+            Clients ->
+                div []
+                    [ text "This is the clients page"
+                    ]
 
 
 main : Program Never Model Msg

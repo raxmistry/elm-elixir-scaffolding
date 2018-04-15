@@ -11127,8 +11127,9 @@ var _user$project$Msgs$OnLocationChange = function (a) {
 };
 
 var _user$project$Update$getPage = function (pathname) {
-	var _p0 = pathname;
-	if (_p0 === 'clients') {
+	var _p0 = A2(_elm_lang$core$Debug$log, 'pathname', pathname);
+	var _p1 = pathname;
+	if (_p1 === 'clients') {
 		return _user$project$Models$Clients;
 	} else {
 		return _user$project$Models$Clients;
@@ -11136,28 +11137,57 @@ var _user$project$Update$getPage = function (pathname) {
 };
 var _user$project$Update$update = F2(
 	function (msg, model) {
-		var _p1 = msg;
+		var _p2 = A2(_elm_lang$core$Debug$log, 'Update', msg);
+		var _p3 = msg;
 		return {
 			ctor: '_Tuple2',
 			_0: _elm_lang$core$Native_Utils.update(
 				model,
 				{
-					page: _user$project$Update$getPage(_p1._0.pathname)
+					page: _user$project$Update$getPage(_p3._0.pathname)
 				}),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
 	});
 
 var _user$project$Main$view = function (model) {
-	var _p0 = model.page;
-	if (_p0.ctor === 'Home') {
+	var _p0 = A2(_elm_lang$core$Debug$log, 'Just checking', model);
+	var _p1 = model.page;
+	if (_p1.ctor === 'Home') {
 		return A2(
 			_elm_lang$html$Html$div,
 			{ctor: '[]'},
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html$text('Hello world'),
-				_1: {ctor: '[]'}
+				_0: _elm_lang$html$Html$text('Hello world there'),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rundis$elm_bootstrap$Bootstrap_Button$linkButton,
+								{
+									ctor: '::',
+									_0: _rundis$elm_bootstrap$Bootstrap_Button$primary,
+									_1: {
+										ctor: '::',
+										_0: _rundis$elm_bootstrap$Bootstrap_Button$attrs(
+											{ctor: '[]'}),
+										_1: {ctor: '[]'}
+									}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Module'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
 			});
 	} else {
 		return A2(
