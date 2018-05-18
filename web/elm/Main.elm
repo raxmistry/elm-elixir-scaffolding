@@ -34,8 +34,11 @@ view model =
                 div []
                     [ text "Hello world there"
                     , div []
-                        [ Button.linkButton
-                            [ Button.primary, Button.attrs [] ]
+                        [ Button.button
+                            [ Button.primary
+                            , Button.onClick ChangeToClientPage
+                            , Button.attrs []
+                            ]
                             [ text "Module" ]
                         ]
                     ]

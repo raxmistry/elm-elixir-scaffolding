@@ -11122,6 +11122,7 @@ var _user$project$Models$Clients = {ctor: 'Clients'};
 var _user$project$Models$Home = {ctor: 'Home'};
 var _user$project$Models$initialModel = {page: _user$project$Models$Home};
 
+var _user$project$Msgs$ChangeToClientPage = {ctor: 'ChangeToClientPage'};
 var _user$project$Msgs$OnLocationChange = function (a) {
 	return {ctor: 'OnLocationChange', _0: a};
 };
@@ -11135,19 +11136,35 @@ var _user$project$Update$getPage = function (pathname) {
 		return _user$project$Models$Clients;
 	}
 };
+var _user$project$Update$updateModelPage = F2(
+	function (model, page) {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{page: page});
+	});
 var _user$project$Update$update = F2(
 	function (msg, model) {
 		var _p2 = A2(_elm_lang$core$Debug$log, 'Update', msg);
 		var _p3 = msg;
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{
-					page: _user$project$Update$getPage(_p3._0.pathname)
-				}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
+		if (_p3.ctor === 'OnLocationChange') {
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						page: _user$project$Update$getPage(_p3._0.pathname)
+					}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		} else {
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{page: _user$project$Models$Clients}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
 	});
 
 var _user$project$Main$view = function (model) {
@@ -11168,15 +11185,19 @@ var _user$project$Main$view = function (model) {
 						{
 							ctor: '::',
 							_0: A2(
-								_rundis$elm_bootstrap$Bootstrap_Button$linkButton,
+								_rundis$elm_bootstrap$Bootstrap_Button$button,
 								{
 									ctor: '::',
 									_0: _rundis$elm_bootstrap$Bootstrap_Button$primary,
 									_1: {
 										ctor: '::',
-										_0: _rundis$elm_bootstrap$Bootstrap_Button$attrs(
-											{ctor: '[]'}),
-										_1: {ctor: '[]'}
+										_0: _rundis$elm_bootstrap$Bootstrap_Button$onClick(_user$project$Msgs$ChangeToClientPage),
+										_1: {
+											ctor: '::',
+											_0: _rundis$elm_bootstrap$Bootstrap_Button$attrs(
+												{ctor: '[]'}),
+											_1: {ctor: '[]'}
+										}
 									}
 								},
 								{

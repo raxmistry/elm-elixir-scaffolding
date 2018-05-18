@@ -15,6 +15,20 @@ update msg model =
             OnLocationChange location ->
                 ( { model | page = getPage (location.pathname) }, Cmd.none )
 
+            ChangeToClientPage ->
+                ( { model | page = Clients }, Cmd.none )
+
+
+
+--                model
+--                    |> updateModelPage Clients
+--                    |> []
+
+
+updateModelPage : Model -> Page -> Model
+updateModelPage model page =
+    { model | page = page }
+
 
 getPage : String -> Page
 getPage pathname =
