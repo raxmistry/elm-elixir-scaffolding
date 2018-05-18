@@ -1,14 +1,13 @@
 module Main exposing (..)
 
-import Html exposing (Html, text, div)
 import Models exposing (..)
 import Msgs exposing (..)
 import Update exposing (update)
 import Bootstrap.CDN as CDN
 import Bootstrap.Grid as Grid
-import Bootstrap.Button as Button
 import Navigation exposing (program, Location)
 import Debug exposing (log)
+import View exposing (view)
 
 
 init : Location -> ( Model, Cmd Msg )
@@ -21,40 +20,6 @@ init location =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.none
-
-
-view : Model -> Html Msg
-view model =
-    let
-        _ =
-            Debug.log "Just checking" model
-    in
-        case model.page of
-            Home ->
-                div []
-                    [ text "Hello world there"
-                    , div []
-                        [ Button.button
-                            [ Button.primary
-                            , Button.onClick ChangeToClientPage
-                            , Button.attrs []
-                            ]
-                            [ text "Clients" ]
-                        ]
-                    ]
-
-            Clients ->
-                div []
-                    [ text "This is the clients page"
-                    , div []
-                        [ Button.button
-                            [ Button.primary
-                            , Button.onClick ChangeToHomePage
-                            , Button.attrs []
-                            ]
-                            [ text "Home" ]
-                        ]
-                    ]
 
 
 main : Program Never Model Msg

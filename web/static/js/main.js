@@ -11177,91 +11177,98 @@ var _user$project$Update$update = F2(
 		}
 	});
 
-var _user$project$Main$view = function (model) {
+var _user$project$View$clientPage = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text('This is the clients page'),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_rundis$elm_bootstrap$Bootstrap_Button$button,
+							{
+								ctor: '::',
+								_0: _rundis$elm_bootstrap$Bootstrap_Button$primary,
+								_1: {
+									ctor: '::',
+									_0: _rundis$elm_bootstrap$Bootstrap_Button$onClick(_user$project$Msgs$ChangeToHomePage),
+									_1: {
+										ctor: '::',
+										_0: _rundis$elm_bootstrap$Bootstrap_Button$attrs(
+											{ctor: '[]'}),
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Home'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$View$homePage = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text('This is the Home Page'),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_rundis$elm_bootstrap$Bootstrap_Button$button,
+							{
+								ctor: '::',
+								_0: _rundis$elm_bootstrap$Bootstrap_Button$primary,
+								_1: {
+									ctor: '::',
+									_0: _rundis$elm_bootstrap$Bootstrap_Button$onClick(_user$project$Msgs$ChangeToClientPage),
+									_1: {
+										ctor: '::',
+										_0: _rundis$elm_bootstrap$Bootstrap_Button$attrs(
+											{ctor: '[]'}),
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Clients'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$View$view = function (model) {
 	var _p0 = A2(_elm_lang$core$Debug$log, 'Just checking', model);
 	var _p1 = model.page;
 	if (_p1.ctor === 'Home') {
-		return A2(
-			_elm_lang$html$Html$div,
-			{ctor: '[]'},
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html$text('Hello world there'),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{ctor: '[]'},
-						{
-							ctor: '::',
-							_0: A2(
-								_rundis$elm_bootstrap$Bootstrap_Button$button,
-								{
-									ctor: '::',
-									_0: _rundis$elm_bootstrap$Bootstrap_Button$primary,
-									_1: {
-										ctor: '::',
-										_0: _rundis$elm_bootstrap$Bootstrap_Button$onClick(_user$project$Msgs$ChangeToClientPage),
-										_1: {
-											ctor: '::',
-											_0: _rundis$elm_bootstrap$Bootstrap_Button$attrs(
-												{ctor: '[]'}),
-											_1: {ctor: '[]'}
-										}
-									}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('Clients'),
-									_1: {ctor: '[]'}
-								}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			});
+		return _user$project$View$homePage(model);
 	} else {
-		return A2(
-			_elm_lang$html$Html$div,
-			{ctor: '[]'},
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html$text('This is the clients page'),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{ctor: '[]'},
-						{
-							ctor: '::',
-							_0: A2(
-								_rundis$elm_bootstrap$Bootstrap_Button$button,
-								{
-									ctor: '::',
-									_0: _rundis$elm_bootstrap$Bootstrap_Button$primary,
-									_1: {
-										ctor: '::',
-										_0: _rundis$elm_bootstrap$Bootstrap_Button$onClick(_user$project$Msgs$ChangeToHomePage),
-										_1: {
-											ctor: '::',
-											_0: _rundis$elm_bootstrap$Bootstrap_Button$attrs(
-												{ctor: '[]'}),
-											_1: {ctor: '[]'}
-										}
-									}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('Home'),
-									_1: {ctor: '[]'}
-								}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			});
+		return _user$project$View$clientPage(model);
 	}
 };
+
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
@@ -11271,7 +11278,7 @@ var _user$project$Main$init = function (location) {
 var _user$project$Main$main = A2(
 	_elm_lang$navigation$Navigation$program,
 	_user$project$Msgs$OnLocationChange,
-	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Update$update, subscriptions: _user$project$Main$subscriptions})();
+	{init: _user$project$Main$init, view: _user$project$View$view, update: _user$project$Update$update, subscriptions: _user$project$Main$subscriptions})();
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
