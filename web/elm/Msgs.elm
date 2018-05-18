@@ -6,3 +6,4 @@ import Navigation exposing (Location)
 type Msg
     = OnLocationChange Location
     | ChangeToClientPage
+    | ChangeToHomePage

@@ -39,13 +39,21 @@ view model =
                             , Button.onClick ChangeToClientPage
                             , Button.attrs []
                             ]
-                            [ text "Module" ]
+                            [ text "Clients" ]
                         ]
                     ]
 
             Clients ->
                 div []
                     [ text "This is the clients page"
+                    , div []
+                        [ Button.button
+                            [ Button.primary
+                            , Button.onClick ChangeToHomePage
+                            , Button.attrs []
+                            ]
+                            [ text "Home" ]
+                        ]
                     ]
 
 

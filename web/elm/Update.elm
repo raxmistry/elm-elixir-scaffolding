@@ -18,11 +18,8 @@ update msg model =
             ChangeToClientPage ->
                 ( { model | page = Clients }, Cmd.none )
 
-
-
---                model
---                    |> updateModelPage Clients
---                    |> []
+            ChangeToHomePage ->
+                ( { model | page = Home }, Cmd.none )
 
 
 updateModelPage : Model -> Page -> Model
