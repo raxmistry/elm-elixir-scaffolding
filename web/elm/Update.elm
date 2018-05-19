@@ -3,6 +3,7 @@ module Update exposing (update)
 import Msgs exposing (..)
 import Models exposing (..)
 import Debug exposing (log)
+import Clients exposing (getClients)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -15,11 +16,16 @@ update msg model =
             OnLocationChange location ->
                 ( { model | page = getPage (location.pathname) }, Cmd.none )
 
-            ChangeToClientPage ->
-                ( { model | page = Clients }, Cmd.none )
+            ChangeToClientPage clients ->
+                ( { model | page = Clients, clients = clients }, Cmd.none )
 
             ChangeToHomePage ->
                 ( { model | page = Home }, Cmd.none )
+
+
+updateClientsOnModel : Model -> Model
+updateClientsOnModel model =
+    { model | clients = getClients }
 
 
 updateModelPage : Model -> Page -> Model
@@ -38,4 +44,4 @@ getPage pathname =
                 Clients
 
             _ ->
-                Clients
+                Home

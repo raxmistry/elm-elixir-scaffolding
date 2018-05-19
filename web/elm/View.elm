@@ -5,6 +5,8 @@ import Models exposing (..)
 import Bootstrap.Button as Button
 import Debug exposing (log)
 import Html exposing (Html, div, text)
+import Html.Attributes exposing (style)
+import Clients exposing (Client, getClients)
 
 
 view : Model -> Html Msg
@@ -26,12 +28,21 @@ homePage model =
     div []
         [ text "This is the Home Page"
         , div []
-            [ Button.button
-                [ Button.primary
-                , Button.onClick ChangeToClientPage
-                , Button.attrs []
+            [ div []
+                [ text "Could I put some text here?"
+                , Button.button
+                    [ Button.primary
+                    , Button.onClick (ChangeToClientPage getClients)
+                    , Button.attrs []
+                    ]
+                    [ text "Clients" ]
                 ]
-                [ text "Clients" ]
+            , div
+                [ style
+                    [ ( "backgroundColor", "red" )
+                    ]
+                ]
+                [ text "Should have a red background" ]
             ]
         ]
 

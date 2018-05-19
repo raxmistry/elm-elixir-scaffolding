@@ -11115,15 +11115,39 @@ var _rundis$elm_bootstrap$Bootstrap_Grid$col = F2(
 			{options: options, children: children});
 	});
 
-var _user$project$Models$Model = function (a) {
-	return {page: a};
-};
+var _user$project$Clients$Client = F3(
+	function (a, b, c) {
+		return {name: a, surname: b, age: c};
+	});
+var _user$project$Clients$getClients = function () {
+	var client2 = A3(_user$project$Clients$Client, 'Another', 'one', 30);
+	var client1 = A3(_user$project$Clients$Client, 'test', 'bob', 10);
+	return {
+		ctor: '::',
+		_0: client1,
+		_1: {
+			ctor: '::',
+			_0: client2,
+			_1: {ctor: '[]'}
+		}
+	};
+}();
+
+var _user$project$Models$Model = F2(
+	function (a, b) {
+		return {page: a, clients: b};
+	});
 var _user$project$Models$Clients = {ctor: 'Clients'};
 var _user$project$Models$Home = {ctor: 'Home'};
-var _user$project$Models$initialModel = {page: _user$project$Models$Home};
+var _user$project$Models$initialModel = {
+	page: _user$project$Models$Home,
+	clients: {ctor: '[]'}
+};
 
 var _user$project$Msgs$ChangeToHomePage = {ctor: 'ChangeToHomePage'};
-var _user$project$Msgs$ChangeToClientPage = {ctor: 'ChangeToClientPage'};
+var _user$project$Msgs$ChangeToClientPage = function (a) {
+	return {ctor: 'ChangeToClientPage', _0: a};
+};
 var _user$project$Msgs$OnLocationChange = function (a) {
 	return {ctor: 'OnLocationChange', _0: a};
 };
@@ -11134,7 +11158,7 @@ var _user$project$Update$getPage = function (pathname) {
 	if (_p1 === 'clients') {
 		return _user$project$Models$Clients;
 	} else {
-		return _user$project$Models$Clients;
+		return _user$project$Models$Home;
 	}
 };
 var _user$project$Update$updateModelPage = F2(
@@ -11143,6 +11167,11 @@ var _user$project$Update$updateModelPage = F2(
 			model,
 			{page: page});
 	});
+var _user$project$Update$updateClientsOnModel = function (model) {
+	return _elm_lang$core$Native_Utils.update(
+		model,
+		{clients: _user$project$Clients$getClients});
+};
 var _user$project$Update$update = F2(
 	function (msg, model) {
 		var _p2 = A2(_elm_lang$core$Debug$log, 'Update', msg);
@@ -11163,7 +11192,7 @@ var _user$project$Update$update = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{page: _user$project$Models$Clients}),
+						{page: _user$project$Models$Clients, clients: _p3._0}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
@@ -11233,27 +11262,59 @@ var _user$project$View$homePage = function (model) {
 					{
 						ctor: '::',
 						_0: A2(
-							_rundis$elm_bootstrap$Bootstrap_Button$button,
+							_elm_lang$html$Html$div,
+							{ctor: '[]'},
 							{
 								ctor: '::',
-								_0: _rundis$elm_bootstrap$Bootstrap_Button$primary,
+								_0: _elm_lang$html$Html$text('Could I put some text here?'),
 								_1: {
 									ctor: '::',
-									_0: _rundis$elm_bootstrap$Bootstrap_Button$onClick(_user$project$Msgs$ChangeToClientPage),
-									_1: {
-										ctor: '::',
-										_0: _rundis$elm_bootstrap$Bootstrap_Button$attrs(
-											{ctor: '[]'}),
-										_1: {ctor: '[]'}
-									}
+									_0: A2(
+										_rundis$elm_bootstrap$Bootstrap_Button$button,
+										{
+											ctor: '::',
+											_0: _rundis$elm_bootstrap$Bootstrap_Button$primary,
+											_1: {
+												ctor: '::',
+												_0: _rundis$elm_bootstrap$Bootstrap_Button$onClick(
+													_user$project$Msgs$ChangeToClientPage(_user$project$Clients$getClients)),
+												_1: {
+													ctor: '::',
+													_0: _rundis$elm_bootstrap$Bootstrap_Button$attrs(
+														{ctor: '[]'}),
+													_1: {ctor: '[]'}
+												}
+											}
+										},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Clients'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
 								}
-							},
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html$text('Clients'),
-								_1: {ctor: '[]'}
 							}),
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$style(
+										{
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'backgroundColor', _1: 'red'},
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Should have a red background'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
 					}),
 				_1: {ctor: '[]'}
 			}
