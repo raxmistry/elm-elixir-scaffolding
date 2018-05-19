@@ -3,9 +3,10 @@ module View exposing (view)
 import Msgs exposing (..)
 import Models exposing (..)
 import Bootstrap.Button as Button
+import Bootstrap.Table as Table
 import Debug exposing (log)
-import Html exposing (Html, div, text)
-import Html.Attributes exposing (style)
+import Html exposing (Html, div, text, thead, tr, td, span)
+import Html.Attributes exposing (style, class)
 import Clients exposing (Client, getClients)
 
 
@@ -29,8 +30,7 @@ homePage model =
         [ text "This is the Home Page"
         , div []
             [ div []
-                [ text "Could I put some text here?"
-                , Button.button
+                [ Button.button
                     [ Button.primary
                     , Button.onClick (ChangeToClientPage getClients)
                     , Button.attrs []
@@ -39,10 +39,10 @@ homePage model =
                 ]
             , div
                 [ style
-                    [ ( "backgroundColor", "red" )
+                    [ ( "backgroundColor", "grey" )
                     ]
                 ]
-                [ text "Should have a red background" ]
+                [ text "Should have a grey background" ]
             ]
         ]
 
@@ -50,7 +50,8 @@ homePage model =
 clientPage : Model -> Html Msg
 clientPage model =
     div []
-        [ text "This is the clients page"
+        [ text "Clients"
+        , clientTable model
         , div []
             [ Button.button
                 [ Button.primary
@@ -59,4 +60,39 @@ clientPage model =
                 ]
                 [ text "Home" ]
             ]
+        ]
+
+
+clientTable : Model -> Html Msg
+clientTable model =
+    div []
+        [ Table.table
+            { options = [ Table.striped, Table.hover ]
+            , thead =
+                Table.simpleThead
+                    [ Table.th [] [ text "Name" ]
+                    , Table.th [] [ text "Surname" ]
+                    , Table.th [] [ text "Age" ]
+                    , Table.th [] [ text "Actions" ]
+                    ]
+            , tbody = clientTableData model
+            }
+        ]
+
+
+clientTableData : Model -> Table.TBody Msg
+clientTableData model =
+    Table.tbody []
+        (model.clients
+            |> List.map clientTableRow
+        )
+
+
+clientTableRow : Client -> Table.Row Msg
+clientTableRow client =
+    Table.tr []
+        [ Table.td [] [ text client.name ]
+        , Table.td [] [ text client.surname ]
+        , Table.td [] [ text (toString client.age) ]
+        , Table.td [] [ span [ class "glyphicon glyphicon-star" ] [] ]
         ]
